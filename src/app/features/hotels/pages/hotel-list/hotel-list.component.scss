@@ -14,7 +14,8 @@ h1 {
   margin-right: -1rem;
 }
 
-.col, [class*="col-"] {
+.col,
+[class*='col-'] {
   padding-left: 1rem;
   padding-right: 1rem;
 }
@@ -67,7 +68,7 @@ h1 {
   &.alert-danger {
     background-color: rgba(249, 65, 68, 0.1);
     border-color: rgba(249, 65, 68, 0.2);
-    color: #F94144;
+    color: #f94144;
   }
 
   .bi {

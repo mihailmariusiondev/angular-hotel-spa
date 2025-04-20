@@ -42,23 +42,25 @@
   color: var(--secondary-color);
 }
 
-.card-text { // General card text styling
+.card-text {
+  // General card text styling
   color: var(--gray-600);
   margin-bottom: 1rem;
   font-size: 0.9rem;
 }
 
-.address-text { // Keep specific address style if needed
-    // Inherits from .card-text
+.address-text {
+  // Keep specific address style if needed
+  // Inherits from .card-text
 }
 
-.description-snippet { // Style for the new description snippet
+.description-snippet {
+  // Style for the new description snippet
   font-size: 0.85rem; // Make it slightly smaller
   color: var(--gray-700); // Slightly darker than default text perhaps
   margin-bottom: 1rem; // Keep consistent margin
   // Add height/line-clamp if you want exactly N lines, but slice is simpler for minimal change
 }
-
 
 .stars {
   font-size: 1rem;

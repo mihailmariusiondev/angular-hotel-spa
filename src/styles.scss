@@ -6,10 +6,10 @@
 
 /* Custom Color Variables */
 :root {
-  --primary-color: #2A9D8F;
+  --primary-color: #2a9d8f;
   --secondary-color: #264653;
-  --accent-color: #E9C46A;
-  --light-color: #F8F9FA;
+  --accent-color: #e9c46a;
+  --light-color: #f8f9fa;
   --dark-color: #212529;
 
   --gray-100: #f8f9fa;
@@ -25,10 +25,10 @@
   /* Override Bootstrap variables */
   --bs-primary: var(--primary-color);
   --bs-secondary: var(--secondary-color);
-  --bs-info: #4ECDC4;
+  --bs-info: #4ecdc4;
   --bs-warning: var(--accent-color);
-  --bs-danger: #F94144;
-  --bs-success: #42B883;
+  --bs-danger: #f94144;
+  --bs-success: #42b883;
   --bs-light: var(--light-color);
   --bs-dark: var(--dark-color);
 
@@ -81,7 +81,6 @@ main {
   /* padding-bottom: var(--footer-height); Evita que el contenido se oculte bajo el footer si fuera fijo */
 }
 
-
 h1,
 h2,
 h3,
@@ -98,7 +97,9 @@ h6 {
   overflow: hidden;
   border: none;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 /* Form controls */
@@ -185,7 +186,7 @@ h6 {
 }
 
 .col,
-[class*="col-"] {
+[class*='col-'] {
   padding-left: 1rem;
   padding-right: 1rem;
 }

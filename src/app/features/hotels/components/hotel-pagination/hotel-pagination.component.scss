@@ -161,7 +161,7 @@
   }
 
   // Specific styles for the "Page X of Y" button
-  li.active[aria-current="page"] .page-link {
+  li.active[aria-current='page'] .page-link {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
     color: white;
