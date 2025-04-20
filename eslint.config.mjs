@@ -9,6 +9,11 @@ import prettier from 'eslint-plugin-prettier';
 import prettierConfig from 'eslint-config-prettier';
 
 export default defineConfig([
+  // Ignorar archivos no relevantes
+  {
+    ignores: ['coverage/**', 'dist/**', 'src/index.html'], // 👈 aquí agregamos dist/**
+  },
+  // Lint para archivos TypeScript
   {
     files: ['**/*.ts'],
     languageOptions: {
@@ -46,8 +51,9 @@ export default defineConfig([
       ],
     },
   },
+  // Lint para plantillas Angular
   {
-    files: ['**/*.html'],
+    files: ['src/app/**/*.html'],
     languageOptions: {
       parser: angularTemplateParser,
     },
