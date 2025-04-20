@@ -194,10 +194,23 @@ La aplicación sigue una arquitectura moderna y modular, optimizada para escalab
 
 ### Pasos
 
-1.  **Clonar:** `git clone <URL_DEL_REPOSITORIO>`
-2.  **Navegar:** `cd <NOMBRE_DEL_DIRECTORIO>`
-3.  **Instalar dependencias:** `npm install`
-4.  **Generar base de datos mock:** `npm run generate-db` (Crea `db.json` con 100 hoteles)
+1.  **Clonar:**
+    ```bash
+    git clone https://github.com/mihailmariusiondev/angular-hotel-spa.git
+    ```
+2.  **Navegar:**
+    ```bash
+    cd angular-hotel-spa
+    ```
+3.  **Instalar dependencias:**
+    ```bash
+    npm install
+    ```
+4.  **Generar base de datos mock:**
+    ```bash
+    npm run generate-db
+    ```
+    _(Crea/actualiza `db.json` con 100 hoteles)_
 5.  **Iniciar servidores (Angular + json-server):**
     ```bash
     npm run start
