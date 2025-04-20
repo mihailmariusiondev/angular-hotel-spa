@@ -59,7 +59,7 @@ A continuación se listan los requisitos básicos solicitados en la descripción
 - ✅ **Ejecución:** Funciona con `npm run start` (Angular + `json-server`).
 - ✅ **Uso de Angular 17:** Aplicación generada y desarrollada con Angular 17.
 - ✅ **Uso de características modernas:** Valoración positiva (implementado extensivamente).
-- ✅ **Pruebas unitarias:** Valoración positiva (implementadas extensivamente aunque no eran obligatorias).
+- ✅ **Pruebas unitarias:** Valoración positiva (implementadas extensivamente, **superando el 80% de cobertura requerido** - ver sección de pruebas).
 
 ---
 
@@ -102,8 +102,8 @@ Además de cumplir con lo solicitado, se han añadido numerosas características
   - **Sin `Promise` ni `async/await`** (Restricción autoimpuesta vía SRD).
 - **Interceptor HTTP:** Para automatizar el manejo del spinner de carga.
 - **Tipado estricto (TypeScript):** Interfaces claras y modo `strict` habilitado.
-- **Pruebas unitarias extensivas:** Cobertura significativa de componentes y servicios con Jasmine/Karma (ver sección de pruebas para detalles).
-- **Calidad de código:** Configuración y uso de ESLint y Prettier.
+- **Pruebas unitarias extensivas:** Cobertura significativa de componentes y servicios con Jasmine/Karma.
+- **Calidad de código:** Configuración y uso de ESLint y Prettier. Código **ampliamente comentado** para explicar la lógica.
 
 **Herramientas y entorno:**
 
@@ -230,8 +230,8 @@ A continuación se describen los scripts definidos en `package.json`:
 
 ### 🔧 Entorno de producción (Build y ejecución)
 
-1.  **Construir imagen:** `docker build -t angular-spa:latest .`
-2.  **Ejecutar contenedor:** `docker run --rm -p 8080:80 angular-spa:latest`
+1.  **Construir imagen:** `npm run docker:build` (o `docker build -t angular-spa:latest .`)
+2.  **Ejecutar contenedor:** `npm run docker:run` (o `docker run --rm -p 8080:80 angular-spa:latest`)
     - Accede en: `http://localhost:8080`
 
 ### 🧪 Entorno de desarrollo (Docker - Script ad-hoc)
@@ -255,7 +255,7 @@ El proyecto incluye una suite de pruebas unitarias robusta utilizando Jasmine y 
   ```bash
   npm run test
   ```
-- **Cobertura de código:** Las pruebas están configuradas para generar un informe de cobertura. Se han alcanzado los siguientes niveles, superando ampliamente los estándares habituales:
+- **Cobertura de código:** Las pruebas están configuradas para generar un informe de cobertura. Se han alcanzado los siguientes niveles, **superando el objetivo del 80%** establecido en los criterios de evaluación:
   ```
   =============================== Coverage summary ===============================
   Statements   : 95.22% ( 259/272 )
@@ -272,9 +272,18 @@ El proyecto incluye una suite de pruebas unitarias robusta utilizando Jasmine y 
 
 Se utilizan ESLint y Prettier para mantener una alta calidad y consistencia en el código.
 
-- **Verificar linting:** `npm run lint`
-- **Formatear código:** `npm run format`
-- **Verificar formato:** `npm run format:check`
+- **Verificación de Linting:** El comando `npm run lint` finaliza exitosamente, indicando **0 errores y 0 warnings** según las reglas configuradas en `eslint.config.mjs`.
+
+  ```bash
+  > apps-angular-technical-test@0.0.0 lint
+  > eslint . --ext .ts,.html
+
+  # (No output indica que no hay problemas)
+  ```
+
+- **Formateo Automático:** `npm run format` aplica automáticamente el estilo de código definido en `.prettierrc`.
+- **Verificación de Formato:** `npm run format:check` permite comprobar si el código cumple con las reglas de formato sin modificar archivos (útil en CI).
+- **Comentarios en el Código:** El código fuente incluye **comentarios JSDoc y explicaciones** en las partes más relevantes o complejas para facilitar su comprensión y mantenimiento.
 
 ---
 
@@ -310,7 +319,3 @@ Pasos para desplegar la imagen de producción en [Render.com](https://render.com
 - [LinkedIn](https://www.linkedin.com/in/mariusdev/)
 
 _Prueba técnica realizada para Ávoris Corporación Empresarial (Abril 2025), ampliando significativamente los requisitos iniciales y aplicando prácticas modernas de desarrollo y arquitectura Angular._
-
-```
-</write_to_file>
-```
