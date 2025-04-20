@@ -1,0 +1,57 @@
+<!-- Template for displaying hotel details or a loading spinner -->
+<!-- Use the async pipe to subscribe to the hotel$ observable -->
+@if (hotel$ | async; as hotel) {
+  <!-- Display hotel details if hotel data is available -->
+  <div class="detail-container">
+    <a
+      routerLink="/hotels"
+      class="btn btn-floating-back shadow"
+      aria-label="Volver al listado"
+      title="Volver al listado"
+    >
+      <i class="bi bi-arrow-left"></i>
+    </a>
+
+    <div class="card mb-4">
+      <!-- Contenedor para la imagen con aspect-ratio -->
+      <div class="detail-image-container">
+        <img
+          #imgElement
+          [src]="hotel.image"
+          (load)="onImageLoad(imgElement)"
+          (error)="onImageError($event)"
+          class="detail-img image-loading"
+          [alt]="hotel.name"
+          loading="lazy"
+        />
+      </div>
+      <div class="card-body">
+        <h2 class="card-title">{{ hotel.name }}</h2>
+        <p class="card-text text-muted">{{ hotel.address }}</p>
+        <!-- Added text-muted for address -->
+        <div class="d-flex align-items-center mb-3">
+          <!-- Call starsArray directly within the template -->
+          @for (_ of starsArray(hotel.stars); track $index) {
+            <i class="bi bi-star-fill text-warning"></i>
+          }
+          <span class="ms-2">{{ hotel.rate }}/5</span>
+        </div>
+        <h3 class="text-primary">
+          {{ hotel.price | currency: 'EUR' : 'symbol' : '1.2-2' }}
+          <small class="text-muted">por noche</small>
+        </h3>
+
+        <hr class="my-4" />
+        <h4 class="mb-3">Descripción</h4>
+        <p class="hotel-description">{{ hotel.description }}</p>
+      </div>
+    </div>
+  </div>
+} @else {
+  <!-- Display a loading spinner while hotel$ is resolving or if it emitted undefined -->
+  <div class="text-center py-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+  </div>
+}

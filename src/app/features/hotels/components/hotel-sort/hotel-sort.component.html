@@ -1,0 +1,15 @@
+<div class="sort-selector d-flex align-items-center gap-2">
+  <label for="sortSelect" class="form-label mb-0 text-nowrap">Ordenar por:</label>
+  <select
+    id="sortSelect"
+    class="form-select form-select-sm"
+    [(ngModel)]="selectedSort"
+    (change)="onSortChange()"
+    aria-label="Ordenar hoteles por"
+  >
+    <option value="">Por defecto</option>
+    @for (option of sortOptions; track option.value) {
+      <option [value]="option.value">{{ option.label }}</option>
+    }
+  </select>
+</div>

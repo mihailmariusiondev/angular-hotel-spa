@@ -1,0 +1,110 @@
+<!-- Template for the hotel pagination component -->
+@if (paginationState$ | async; as paginationState) {
+  <!-- Only show pagination if there are items -->
+  @if (paginationState.totalItems > 0) {
+    <div class="pagination-container">
+      <!-- Results Info -->
+      @if (resultsInfo$ | async; as info) {
+        <div class="results-info">
+          <p class="mb-0">Mostrando {{ info.start }}-{{ info.end }} de {{ info.total }} hoteles</p>
+        </div>
+      }
+
+      <!-- Pagination Controls & Page Size Selector -->
+      <div class="controls-container d-flex align-items-center gap-3">
+        <app-hotel-sort></app-hotel-sort>
+
+        <!-- Page Size Selector -->
+        <div class="page-size-selector d-flex align-items-center gap-2">
+          <label for="pageSizeSelect" class="form-label mb-0 text-nowrap"
+            >Hoteles por página:</label
+          >
+          <select
+            id="pageSizeSelect"
+            class="form-select form-select-sm"
+            [value]="paginationState.pageSize"
+            (change)="onPageSizeChange($event)"
+            aria-label="Seleccionar número de hoteles por página"
+          >
+            @for (size of availablePageSizes; track size) {
+              <option [value]="size">{{ size }}</option>
+            }
+          </select>
+        </div>
+
+        <!-- Pagination Controls -->
+        @if ((totalPages$ | async) ?? 0 > 1) {
+          <nav aria-label="Paginación de hoteles">
+            <ul class="pagination mb-0">
+              <!-- First Page Button -->
+              <li class="page-item" [class.disabled]="paginationState.currentPage === 1">
+                <button
+                  class="page-link"
+                  (click)="firstPage()"
+                  [disabled]="paginationState.currentPage === 1"
+                  aria-label="Ir a la primera página"
+                >
+                  <i class="bi bi-chevron-double-left"></i>
+                </button>
+              </li>
+
+              <!-- Previous Page Button -->
+              <li class="page-item" [class.disabled]="paginationState.currentPage === 1">
+                <button
+                  class="page-link"
+                  (click)="previousPage()"
+                  [disabled]="paginationState.currentPage === 1"
+                  aria-label="Ir a la página anterior"
+                >
+                  <i class="bi bi-chevron-left"></i>
+                </button>
+              </li>
+
+              <!-- Current Page Info -->
+              <li class="page-item active" aria-current="page">
+                <span class="page-link">
+                  Página {{ paginationState.currentPage }} de {{ totalPages$ | async }}
+                </span>
+              </li>
+
+              <!-- Next Page Button -->
+              <li
+                class="page-item"
+                [class.disabled]="paginationState.currentPage === (totalPages$ | async)"
+              >
+                <button
+                  class="page-link"
+                  (click)="nextPage()"
+                  [disabled]="paginationState.currentPage === (totalPages$ | async)"
+                  aria-label="Ir a la página siguiente"
+                >
+                  <i class="bi bi-chevron-right"></i>
+                </button>
+              </li>
+
+              <!-- Last Page Button -->
+              <li
+                class="page-item"
+                [class.disabled]="paginationState.currentPage === (totalPages$ | async)"
+              >
+                <button
+                  class="page-link"
+                  (click)="lastPage()"
+                  [disabled]="paginationState.currentPage === (totalPages$ | async)"
+                  aria-label="Ir a la última página"
+                >
+                  <i class="bi bi-chevron-double-right"></i>
+                </button>
+              </li>
+            </ul>
+          </nav>
+        }
+      </div>
+      <!-- End Controls Container -->
+    </div>
+    <!-- End Pagination Container -->
+  } @else {
+    <!-- Optional: Show a message or nothing if totalItems is 0 -->
+    <!-- <p class="text-muted text-center mt-4">No hay hoteles para mostrar.</p> -->
+  }
+}

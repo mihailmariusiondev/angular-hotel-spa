@@ -1,0 +1,19 @@
+# Ignore artifacts:
+build
+coverage
+dist
+node_modules
+
+# Ignore package files
+package-lock.json
+yarn.lock
+
+# Ignore IDE files
+.idea
+.vscode
+
+# Ignore Angular files
+*.ngfactory.ts
+*.ngsummary.json
+*.ngstyle.ts
+*.ngtypecheck.ts

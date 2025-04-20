@@ -1,0 +1,147 @@
+<!-- Template for the hotel filters component -->
+<div class="card shadow mb-4">
+  <div class="card-header bg-primary text-white">
+    <h5 class="mb-0">Busca tu hotel</h5>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="filterForm">
+      <!-- Name Filter -->
+      <div class="mb-3">
+        <label for="nameFilter" class="form-label">Nombre del Hotel</label>
+        <input
+          type="text"
+          class="form-control"
+          id="nameFilter"
+          placeholder="Buscar por nombre..."
+          formControlName="name"
+          aria-label="Filtrar por nombre"
+        />
+      </div>
+
+      <!-- Stars Filter -->
+      <div class="mb-3">
+        <label class="form-label d-block">Categoría (Estrellas)</label>
+        <div class="d-flex flex-wrap gap-2">
+          @for (star of starOptions; track star) {
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                [id]="'star-' + star"
+                [checked]="selectedStars.includes(star)"
+                (change)="onStarFilterChange(star, $any($event.target).checked)"
+                [attr.aria-label]="'Filtrar por ' + star + ' estrellas'"
+              />
+              <label class="form-check-label d-flex align-items-center" [for]="'star-' + star">
+                {{ star }} <i class="bi bi-star-fill text-warning ms-1"></i>
+              </label>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Minimum Rate Filter -->
+      <div class="mb-3">
+        <label for="rateFilter" class="form-label">
+          Valoración Mínima:
+          <span class="badge bg-secondary">≥ {{ filterForm.get('minRate')?.value }}</span>
+        </label>
+        <input
+          type="range"
+          class="form-range"
+          id="rateFilter"
+          min="0"
+          max="5"
+          step="0.1"
+          formControlName="minRate"
+          aria-label="Filtrar por valoración mínima"
+        />
+      </div>
+
+      <!-- Maximum Price Filter -->
+      <div class="mb-3">
+        <label for="priceFilter" class="form-label">
+          Precio Máximo:
+          <span class="badge bg-secondary">≤ {{ filterForm.get('maxPrice')?.value }} €</span>
+        </label>
+        <input
+          type="range"
+          class="form-range"
+          id="priceFilter"
+          min="50"
+          max="1000"
+          step="10"
+          formControlName="maxPrice"
+          aria-label="Filtrar por precio máximo"
+        />
+      </div>
+
+      <!-- Reset Filters Button -->
+      <button
+        type="button"
+        class="btn btn-outline-secondary w-100"
+        (click)="resetFilters()"
+        [disabled]="(filterState$ | async | json) === (defaultFilters | json)"
+        aria-label="Limpiar todos los filtros"
+      >
+        <i class="bi bi-x-circle me-2"></i> Limpiar Filtros
+      </button>
+      <!-- Apply Filters Button -->
+      <button
+        type="button"
+        [class]="
+          hasPendingChanges()
+            ? 'btn btn-primary w-100 mt-2'
+            : 'btn btn-outline-secondary w-100 mt-2'
+        "
+        (click)="applyFilters()"
+        [disabled]="!hasPendingChanges()"
+        aria-label="Aplicar filtros"
+      >
+        <i class="bi bi-filter-circle me-2"></i> Aplicar Filtros
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- Active Filters Display (Badges) -->
+@if (filterState$ | async; as filterState) {
+  <div class="active-filters mb-4">
+    <h6 class="text-muted mb-2">Filtros activos:</h6>
+    <div class="d-flex flex-wrap gap-2">
+      @if (filterState.name) {
+        <span class="badge rounded-pill bg-primary">
+          Nombre: {{ filterState.name }}
+          <button class="btn-close btn-close-white ms-2" (click)="removeFilter('name')"></button>
+        </span>
+      }
+
+      @for (star of filterState.selectedStars; track star) {
+        <span class="badge rounded-pill bg-primary">
+          Estrellas: {{ star }} <i class="bi bi-star-fill"></i>
+          <button
+            class="btn-close btn-close-white ms-2"
+            (click)="removeFilter('stars', star)"
+          ></button>
+        </span>
+      }
+
+      @if (filterState.minRate > 0) {
+        <span class="badge rounded-pill bg-primary">
+          Valoración: ≥ {{ filterState.minRate }}
+          <button class="btn-close btn-close-white ms-2" (click)="removeFilter('minRate')"></button>
+        </span>
+      }
+
+      @if (filterState.maxPrice < 1000) {
+        <span class="badge rounded-pill bg-primary">
+          Precio: ≤ {{ filterState.maxPrice }} €
+          <button
+            class="btn-close btn-close-white ms-2"
+            (click)="removeFilter('maxPrice')"
+          ></button>
+        </span>
+      }
+    </div>
+  </div>
+}

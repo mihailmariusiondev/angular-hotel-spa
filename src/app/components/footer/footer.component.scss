@@ -1,0 +1,96 @@
+.app-footer {
+  background-color: var(--avoris-secondary);
+  color: var(--avoris-white);
+  padding: 20px 25px;
+  flex-shrink: 0;
+  box-sizing: border-box;
+
+  .footer-content {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .footer-logo {
+    height: 35px;
+    width: auto;
+  }
+
+  .footer-text {
+    text-align: center;
+    flex-grow: 1;
+
+    .footer-main-line {
+      display: inline-flex; // Keep items on one line
+      align-items: center; // Vertically center name/icons
+      gap: 12px; // Space between elements in the line
+      margin-bottom: 5px; // Space below this line, above copyright
+
+      .footer-name {
+        color: var(--avoris-white); // Ensure name is white
+        font-size: 0.9rem;
+      }
+
+      .separator {
+        color: var(--avoris-separator); // Use a theme color for the pipe separator
+        font-weight: 300; // Make pipe lighter
+      }
+
+      .social-icon {
+        font-size: 1.3rem; // Adjust icon size
+        color: var(--avoris-white);
+        transition: color 0.2s ease;
+        line-height: 1; // Helps icon vertical alignment
+
+        &:hover {
+          color: var(--avoris-primary);
+        }
+      }
+    }
+
+    .copyright-text {
+      // Style for the copyright text line
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--avoris-separator);
+    }
+  }
+
+  .footer-links {
+    // Resetting potential previous flex styles if not needed here
+    // Keep original styling for legal/privacy links
+    a {
+      color: var(--avoris-white);
+      text-decoration: none;
+      margin-left: 15px;
+      font-size: 0.85rem;
+
+      &:hover {
+        color: var(--avoris-primary);
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .footer-content {
+      flex-direction: column;
+      text-align: center;
+      gap: 10px; // Adjust gap when stacked
+    }
+
+    .footer-links {
+      margin-top: 10px; // Add some space above links when stacked
+
+      a {
+        margin: 0 10px;
+      }
+
+      // Adjust link spacing when stacked
+    }
+  }
+}

@@ -1,0 +1,92 @@
+<!-- Template for the hotel list page -->
+<div class="container py-4">
+  <h1 class="mb-4">Buscador de hoteles</h1>
+
+  <!-- Global Loading Spinner remains visible during data fetching -->
+  <app-shared-loading-spinner></app-shared-loading-spinner>
+
+  <div class="row g-4">
+    <!-- Sidebar Filters Component -->
+    <div class="col-12 col-md-4 col-lg-3">
+      <app-hotel-filters></app-hotel-filters>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="col-12 col-md-8 col-lg-9">
+      <!-- Deferred Loading Block for Hotels -->
+      <!-- This block is lazy-loaded, improving initial page load performance -->
+      @defer {
+        <!-- Display Hotel List or No Results Message -->
+        <!-- Check if hotels exist OR if there are no results because of filters -->
+        @if ((hotels$ | async)?.length ?? 0 > 0) {
+          <!-- Display the grid of hotel cards if hotels are available -->
+          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            @for (hotel of hotels$ | async; track trackByHotelId) {
+              <div class="col">
+                <!-- Link to the hotel detail page -->
+                <a
+                  [routerLink]="['/hotels', hotel.id]"
+                  class="text-decoration-none d-block h-100"
+                  [attr.aria-label]="'Ver detalles de ' + hotel.name"
+                >
+                  <!-- Display a single hotel card -->
+                  <app-hotel-card [hotel]="hotel"></app-hotel-card>
+                </a>
+              </div>
+            }
+          </div>
+        } @else if (hasNoResults$ | async) {
+          <!-- Display a message when no results are found due to active filters -->
+          <div class="alert alert-info">
+            <i class="bi bi-info-circle me-2"></i>
+            No se encontraron hoteles con los filtros aplicados. Por favor, intenta con diferentes
+            criterios.
+          </div>
+        } @else {
+          <!-- Display a message when no hotels are available on the current page (e.g., initial load with empty data) -->
+          <div class="alert alert-secondary">
+            <i class="bi bi-search me-2"></i>
+            No hay hoteles disponibles en esta página.
+          </div>
+        }
+
+        <!-- Pagination Component -->
+        <div class="mt-4">
+          <app-hotel-pagination></app-hotel-pagination>
+        </div>
+      } @placeholder {
+        <!-- Placeholder displayed while the deferred block is loading -->
+        <div class="placeholder-container">
+          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            @for (i of [1, 2, 3, 4, 5, 6, 7, 8, 9]; track i) {
+              <div class="col">
+                <div class="card h-100 placeholder-card">
+                  <div class="card-img-top placeholder-img"></div>
+                  <div class="card-body">
+                    <h5 class="card-title placeholder-glow">
+                      <span class="placeholder col-8"></span>
+                    </h5>
+                    <p class="card-text placeholder-glow">
+                      <span class="placeholder col-12"></span>
+                      <span class="placeholder col-10"></span>
+                    </p>
+                    <div class="placeholder-glow d-flex justify-content-between">
+                      <span class="placeholder col-4"></span>
+                      <span class="placeholder col-3"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      } @error {
+        <!-- Error message displayed if loading the deferred block fails -->
+        <div class="alert alert-danger">
+          <i class="bi bi-exclamation-triangle me-2"></i>
+          Ha ocurrido un error al cargar los hoteles. Por favor, intenta de nuevo más tarde.
+        </div>
+      }
+    </div>
+  </div>
+</div>

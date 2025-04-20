@@ -1,0 +1,141 @@
+.detail-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  position: relative; // Needed for absolute positioning of the back button
+
+  .card {
+    overflow: hidden; // Asegura que nada se salga de los bordes redondeados
+  }
+
+  // Contenedor de la imagen
+  .detail-image-container {
+    width: 100%;
+    display: block;
+    overflow: hidden;
+    position: relative; // Necesario si usas efectos absolutos dentro
+
+    // Define la proporción de la imagen (ej: 600x400 -> 3:2)
+    aspect-ratio: 600 / 400;
+
+    // Placeholder visual mientras carga
+    background-color: var(--gray-200); // Color de fondo claro
+  }
+
+  // Estilos para la imagen DENTRO del contenedor
+  .detail-img {
+    display: block;
+    width: 100%;
+    height: 100%; // La altura viene del aspect-ratio del contenedor
+    object-fit: cover; // Cubre el área sin distorsionar
+
+    // ---- ESTILOS PARA LA TRANSICIÓN ----
+
+    // Estado final visible por defecto
+    opacity: 1;
+    // filtro sutil opcional para el estado cargado
+    filter: brightness(1) saturate(1);
+
+    // Define la transición para opacidad y filtros (si los usas)
+    transition:
+      opacity 0.5s ease-in-out,
+      filter 0.5s ease-in-out; // Duración y curva de animación
+
+    // Estado inicial (mientras carga)
+    &.image-loading {
+      opacity: 0;
+      filter: brightness(0.9) saturate(0.8); // Opcional: filtro inicial diferente
+    }
+
+    // Estado cuando la imagen ha cargado
+    &.image-loaded {
+      // Puedes añadir estilos específicos aquí si quieres, por ejemplo:
+      filter: brightness(1.02); // Un ligero brillo extra
+      // O simplemente no poner nada si el estado final por defecto es suficiente
+    }
+
+    // Estado cuando la imagen falla al cargar (se muestra la imagen de fallback)
+    &.image-error {
+      // Aquí podrías querer asegurarte de que la imagen SVG de fallback se vea bien
+      object-fit: contain; // Puede ser mejor para SVGs que 'cover'
+      // O añadir un borde, o dejarlo igual que 'loaded'
+      filter: grayscale(50%); // Ejemplo: hacerla ligeramente gris
+    }
+
+    // ---- FIN ESTILOS TRANSICIÓN ----
+  }
+
+  .card-body {
+
+    // Tus estilos existentes para .card-body
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 1rem; // Default text size
+      margin-bottom: 1rem;
+      color: var(--gray-600); // Default text color
+    }
+
+    h3 {
+      font-size: 1.75rem;
+      margin-top: 1rem;
+    }
+
+    .hotel-description {
+      font-size: 1rem; // Standard paragraph size
+      line-height: 1.7; // Slightly more line height for readability
+      color: var(--gray-700); // Slightly darker gray
+      white-space: pre-wrap; // Preserve newlines from the generated text
+    }
+  }
+
+
+}
+
+.btn-floating-back {
+  // --- Desktop Styles (Default) ---
+  position: absolute;
+  // Position relative to the top-left corner of .detail-container
+  top: 0.5rem; // Adjust vertical position as needed
+  // Place it left of the container's padding (1rem) + button width/2 + desired gap
+  // Experiment with this value: maybe -40px, -45px, -50px
+  left: -45px;
+  width: 40px;          // Button width
+  height: 40px; // Button height (equal to width for circle)
+  border-radius: 50%; // Make it perfectly round
+  background-color: var(--avoris-primary, var(--primary-color)); // Use Avoris primary or fallback
+  color: var(--avoris-white, white); // White icon color
+  display: flex; // Center icon using flexbox
+  align-items: center;
+  justify-content: center;
+  border: none; // Remove default button border
+  z-index: 10; // Ensure it sits above other content if needed
+  text-decoration: none; // Remove underline from link
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+
+  // Use existing Bootstrap icon class
+  i {
+    font-size: 1.2rem; // Adjust icon size
+    line-height: 1; // Helps vertical centering
+  }
+
+  &:hover {
+    background-color: var(--avoris-secondary, var(--secondary-color)); // Use darker color on hover
+    transform: scale(1.05); // Slight scale effect on hover
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25); // Enhance shadow on hover
+  }
+
+  // --- Responsive Styles (Small Screens) ---
+  // Using Bootstrap's md breakpoint (adjust if needed)
+  @media (max-width: 767.98px) {
+    position: fixed; // Fix position relative to viewport
+    top: auto; // Ensure top is not inherited
+    right: auto; // Ensure right is not inherited
+    bottom: 1.5rem; // Position from bottom
+    left: 1.5rem; // Position from left
+    // Keep other styles like size, color, border-radius, etc.
+  }
+}

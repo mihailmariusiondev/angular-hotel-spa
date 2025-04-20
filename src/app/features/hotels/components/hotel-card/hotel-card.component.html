@@ -1,0 +1,33 @@
+<div class="card h-100">
+  <div class="card-img-container">
+    <img
+      [src]="hotel.image"
+      class="card-img-top img-fluid"
+      (error)="onImageError($event)"
+      loading="lazy"
+      [alt]="hotel.name"
+    />
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{ hotel.name }}</h5>
+    <p class="card-text address-text">{{ hotel.address }}</p>
+
+    <p class="card-text description-snippet">
+      {{ hotel.description | slice: 0 : 100 }}{{ hotel.description.length > 100 ? '...' : '' }}
+    </p>
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <div class="stars">
+        @for (star of starsArray; track $index) {
+          <i class="bi bi-star-fill text-warning"></i>
+        }
+      </div>
+      <span class="badge bg-info text-dark">{{ hotel.rate }}/5</span>
+    </div>
+
+    <div class="price-container">
+      <span class="price">{{ hotel.price | currency: 'EUR' : 'symbol' : '1.2-2' }}</span>
+      <small class="text-muted">por noche</small>
+    </div>
+  </div>
+</div>

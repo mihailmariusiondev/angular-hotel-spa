@@ -1,0 +1,97 @@
+.card {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  }
+}
+
+.card-img-container {
+  position: relative;
+  padding-top: 56.25%; // 16:9 aspect ratio
+  overflow: hidden;
+  border-bottom: 3px solid var(--primary-color);
+
+  .card-img-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 1.25rem;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--secondary-color);
+}
+
+.card-text { // General card text styling
+  color: var(--gray-600);
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.address-text { // Keep specific address style if needed
+    // Inherits from .card-text
+}
+
+.description-snippet { // Style for the new description snippet
+  font-size: 0.85rem; // Make it slightly smaller
+  color: var(--gray-700); // Slightly darker than default text perhaps
+  margin-bottom: 1rem; // Keep consistent margin
+  // Add height/line-clamp if you want exactly N lines, but slice is simpler for minimal change
+}
+
+
+.stars {
+  font-size: 1rem;
+
+  .bi-star-fill {
+    color: var(--accent-color) !important;
+    margin-right: 2px;
+  }
+}
+
+.badge {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+  font-weight: 500;
+  padding: 0.4rem 0.6rem;
+}
+
+.price-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: auto; // Pushes price to the bottom
+  padding-top: 1rem;
+  border-top: 1px solid var(--gray-200);
+
+  .price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+  }
+
+  .text-muted {
+    font-size: 0.85rem;
+    color: var(--gray-600) !important;
+  }
+}

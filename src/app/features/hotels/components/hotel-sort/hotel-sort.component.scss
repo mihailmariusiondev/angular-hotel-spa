@@ -1,0 +1,47 @@
+// Styles for the inner wrapper holding label and select
+.sort-selector {
+  // d-flex, align-items-center, gap-2 are handled by bootstrap classes in HTML
+
+  // Style the label like the pagination labels
+  .form-label {
+    margin-bottom: 0;
+    font-size: 0.875rem; // Match pagination label font size
+    color: var(--gray-600); // Match pagination label color
+    font-weight: 500; // Add font-weight if needed
+    white-space: nowrap; // Prevent label wrapping
+  }
+
+  // Style the small select exactly like the pagination's page size select
+  .form-select.form-select-sm {
+    width: auto; // Let it size based on content, but add min-width
+    min-width: 255px; // Increased width to prevent overflow
+    height: 34px; // Exact height of pagination buttons/select
+    padding: 0.4rem 0.8rem; // Exact padding
+    font-size: 0.9rem; // Exact font size
+    line-height: 1.4; // Exact line height for vertical centering
+    display: flex; // Ensure flex behavior for centering
+    align-items: center; // Vertically center text
+    border-color: var(--gray-200); // Base border color
+    border-radius: var(--bs-border-radius-sm, 0.25rem); // Small border radius
+    transition: all 0.2s ease; // Keep smooth transitions
+    background-position: right 0.75rem center; // Ensure dropdown arrow position is consistent
+
+    // Hover state - match pagination subtle hover if desired, or keep current
+    &:hover {
+      border-color: var(--primary-color); // Keep primary color border on hover
+      // background-color: rgba(42, 157, 143, 0.08); // Optional: softer hover like pagination
+    }
+
+    // Focus state - match pagination focus
+    &:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 0.25rem rgba(42, 157, 143, 0.25); // Match focus shadow
+      z-index: 3; // Ensure focus is visible
+    }
+
+    // Style options if needed (usually handled by browser)
+    option {
+      // padding: 10px; // Usually not needed, but can adjust browser defaults
+    }
+  }
+}

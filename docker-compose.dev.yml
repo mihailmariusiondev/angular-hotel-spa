@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+  dev:
+    image: node:20-alpine
+    container_name: angular-dev
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "4200:4200"
+    command: >
+      sh -c "npm install &&
+             node generate-hotels-db.js &&
+             npx ng serve --host 0.0.0.0"
+
+  api:
+    image: node:20-alpine
+    container_name: json-server-api
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    command: >
+      sh -c "npm install &&
+             [ -f db.json ] || node generate-hotels-db.js &&
+             npx json-server --watch db.json --host 0.0.0.0 --port 3000"

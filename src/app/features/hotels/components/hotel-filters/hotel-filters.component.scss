@@ -1,0 +1,136 @@
+.card {
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.05);
+
+  .card-header {
+    background-color: var(--primary-color);
+    padding: 1rem 1.25rem;
+    border-bottom: none;
+
+    h5 {
+      margin-bottom: 0;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+  }
+
+  .card-body {
+    padding: 1.25rem;
+  }
+}
+
+.form-label {
+  color: var(--secondary-color);
+  font-weight: 500;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+
+.form-control {
+  margin-bottom: 0.5rem;
+
+  &::placeholder {
+    color: var(--gray-400);
+    font-size: 0.9rem;
+  }
+}
+
+.form-check {
+  margin-bottom: 0.25rem;
+
+  .form-check-input {
+    &:checked {
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+  }
+}
+
+// Style for the star ratings
+.form-check-label {
+  i.bi-star-fill {
+    font-size: 0.9rem;
+    color: var(--accent-color);
+  }
+}
+
+// Range slider styling
+.form-range {
+  margin-top: 0.5rem;
+
+  &::-webkit-slider-thumb {
+    background: var(--primary-color);
+  }
+
+  &::-moz-range-thumb {
+    background: var(--primary-color);
+  }
+}
+
+/* Botón Limpiar filtros: secundario, texto del mismo color y fondo transparente */
+.btn-outline-secondary {
+  margin-top: 0.5rem;
+  border-color: var(--secondary-color);
+  color: var(--secondary-color);
+  background-color: transparent;
+
+  &:hover:not(:disabled) {
+    background-color: var(--secondary-color);
+    color: white;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+// Active filters
+.active-filters {
+  background-color: white;
+  padding: 1rem 1.25rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.05);
+
+  h6 {
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .badge {
+    font-size: 0.85rem;
+    padding: 0.5rem 0.8rem;
+    background-color: var(--primary-color);
+    border: none;
+    font-weight: normal;
+
+    .btn-close {
+      font-size: 0.6rem;
+      padding: 0.1rem;
+      margin-left: 0.5rem;
+    }
+
+    .bi-star-fill {
+      color: var(--accent-color);
+      font-size: 0.8rem;
+    }
+  }
+}
+
+/* Botón Aplicar filtros: primario sólido */
+.btn-primary {
+  margin-top: 0.5rem;
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+
+  &:hover:not(:disabled) {
+    filter: brightness(0.9);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}

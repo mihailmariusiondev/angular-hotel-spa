@@ -1,0 +1,76 @@
+.container {
+  max-width: 1400px;
+}
+
+h1 {
+  color: var(--secondary-color);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+}
+
+.row {
+  margin-left: -1rem;
+  margin-right: -1rem;
+}
+
+.col, [class*="col-"] {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+// Placeholder styling
+.placeholder-card {
+  min-height: 300px;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.05);
+
+  .placeholder-img {
+    height: 200px;
+    background-color: var(--gray-200);
+    border-bottom: 3px solid var(--gray-300);
+  }
+}
+
+.placeholder-glow {
+  padding: 1.25rem;
+
+  .placeholder {
+    background-color: var(--gray-200);
+    animation: placeholder-glow 2s ease-in-out infinite;
+    border-radius: 0.25rem;
+  }
+}
+
+@keyframes placeholder-glow {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+// Alert styling
+.alert {
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+
+  &.alert-info {
+    background-color: rgba(78, 205, 196, 0.1);
+    border-color: rgba(78, 205, 196, 0.2);
+    color: var(--primary-color);
+  }
+
+  &.alert-danger {
+    background-color: rgba(249, 65, 68, 0.1);
+    border-color: rgba(249, 65, 68, 0.2);
+    color: #F94144;
+  }
+
+  .bi {
+    margin-right: 0.5rem;
+  }
+}

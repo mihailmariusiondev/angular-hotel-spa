@@ -1,0 +1,35 @@
+:host {
+  display: block;
+  height: var(--header-height); /* Asegura que el host del header tenga la altura correcta */
+}
+
+.app-header {
+  background-color: var(--avoris-white);
+  border-bottom: 1px solid var(--avoris-separator);
+  padding: 0 25px;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); /* Añadir sombra */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-sizing: border-box;
+
+  .header-content {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Alinear a la izquierda */
+  }
+
+  .app-logo {
+    height: calc(var(--header-height) * 0.55);
+    width: auto;
+    display: block;
+  }
+}

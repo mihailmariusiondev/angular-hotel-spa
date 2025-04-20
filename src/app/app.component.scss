@@ -1,0 +1,10 @@
+:host {
+  display: flex; // Establece app-root como contenedor flex
+  flex-direction: column; // Apila los hijos (header, main, footer) verticalmente
+  min-height: 100vh; // Asegura que app-root ocupe al menos toda la altura de la ventana
+}
+
+main {
+  flex-grow: 1; // Hace que el área de contenido principal crezca para ocupar el espacio sobrante
+  padding-top: var(--header-height); // Añade espacio arriba para compensar el header fijo
+}

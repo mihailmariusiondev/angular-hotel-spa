@@ -1,0 +1,191 @@
+/* Import Bootstrap CSS */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+/* Import Bootstrap Icons */
+@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css');
+
+/* Custom Color Variables */
+:root {
+  --primary-color: #2A9D8F;
+  --secondary-color: #264653;
+  --accent-color: #E9C46A;
+  --light-color: #F8F9FA;
+  --dark-color: #212529;
+
+  --gray-100: #f8f9fa;
+  --gray-200: #e9ecef;
+  --gray-300: #dee2e6;
+  --gray-400: #ced4da;
+  --gray-500: #adb5bd;
+  --gray-600: #6c757d;
+  --gray-700: #495057;
+  --gray-800: #343a40;
+  --gray-900: #212529;
+
+  /* Override Bootstrap variables */
+  --bs-primary: var(--primary-color);
+  --bs-secondary: var(--secondary-color);
+  --bs-info: #4ECDC4;
+  --bs-warning: var(--accent-color);
+  --bs-danger: #F94144;
+  --bs-success: #42B883;
+  --bs-light: var(--light-color);
+  --bs-dark: var(--dark-color);
+
+  // Colores Principales de Avoris (extraídos del HTML)
+  --avoris-primary: hsla(169, 70%, 58%, 1);
+  /* Teal/Aqua: #4BE0C3 */
+  --avoris-secondary: hsla(194, 85%, 13%, 1);
+  /* Dark Blue: #05313E */
+  --avoris-primary-light: hsla(168, 41%, 97%, 1);
+  /* Very Light Teal: #F7FCFB */
+  --avoris-white: hsla(0, 0%, 100%, 1);
+  /* White: #FFFFFF */
+  --avoris-main-text: hsla(0, 0%, 14%, 1);
+  /* Near Black: #232323 */
+  --avoris-second-text: hsla(0, 0%, 47%, 1);
+  /* Gray: #777777 */
+  --avoris-bg-grey: hsla(0, 0%, 97%, 1);
+  /* Light Gray: #F7F7F7 */
+  --avoris-separator: hsla(0, 0%, 84%, 1);
+  /* Lighter Gray: #D6D6D6 */
+
+  // Tamaños útiles (opcional, ajusta según tu diseño)
+  --header-height: 65px;
+  --footer-height: 60px;
+}
+
+/* Global styles */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  /* Mantengo la fuente existente */
+  color: var(--dark-color);
+  /* Mantengo el color de texto existente */
+  line-height: 1.6;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--light-color);
+  /* Mantengo el color de fondo existente */
+}
+
+main {
+  flex: 1 0 auto;
+  /* Hace que el main ocupe el espacio disponible, empujando el footer hacia abajo */
+  // padding-top: var(--header-height); /* Evita que el contenido se oculte bajo el header fijo */
+  /* padding-bottom: var(--footer-height); Evita que el contenido se oculte bajo el footer si fuera fijo */
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+/* Card styling */
+.card {
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: none;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Form controls */
+.form-control,
+.form-select {
+  border-radius: 0.5rem;
+  padding: 0.625rem 1rem;
+  border-color: var(--gray-300);
+  transition: all 0.2s ease;
+}
+
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus,
+.btn:focus {
+  box-shadow: 0 0 0 0.25rem rgba(42, 157, 143, 0.25);
+  border-color: var(--primary-color);
+}
+
+/* Buttons */
+.btn {
+  border-radius: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+  background-color: #248277;
+  border-color: #248277;
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+}
+
+.btn-secondary:hover {
+  background-color: #1d3746;
+  border-color: #1d3746;
+}
+
+/* Badges */
+.badge {
+  font-weight: 500;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+}
+
+.bg-primary {
+  background-color: var(--primary-color) !important;
+}
+
+.bg-secondary {
+  background-color: var(--secondary-color) !important;
+}
+
+.bg-info {
+  background-color: var(--bs-info) !important;
+}
+
+.text-primary {
+  color: var(--primary-color) !important;
+}
+
+.text-secondary {
+  color: var(--secondary-color) !important;
+}
+
+/* Spacing utilities */
+.container {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.row {
+  margin-left: -1rem;
+  margin-right: -1rem;
+}
+
+.col,
+[class*="col-"] {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
